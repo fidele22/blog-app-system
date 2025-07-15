@@ -9,7 +9,9 @@ function saveUsers(users) {
   localStorage.setItem('users', JSON.stringify(users));
 }
 
-
+function generateId(){
+    return Date.now().toString();
+}
 // Register a new user
 function registerUser() {
   const username = document.getElementById('username').value.trim();
@@ -27,7 +29,7 @@ function registerUser() {
 
   
   const newUser = {
-  
+    id:generateId(),
     username,
     password,
     role
@@ -40,28 +42,6 @@ function registerUser() {
 }
 
 // // Handle user login
-// function loginUser() {
-
-//   const username = document.getElementById('login-username').value.trim();
-//   const password = document.getElementById('login-password').value;
-
-
-//   const users = getUsers();
-
-//   const user = users.find(u => u.username === username && u.password === password);
-
-
-//   if (!user) {
-//     alert('Incorrect username or password!');
-//     return;
-//   }
-
-//   // Save logged in user in localStorage
-//   localStorage.setItem('loggedInUser', JSON.stringify(user));
-
-//   // Redirect to dashboard
-//   window.location.href = 'dashboard.html';
-// }
 
 function loginUser(){
 
@@ -90,3 +70,11 @@ function loginUser(){
    
 
 }
+
+// fetching the data and render it to dom
+
+const userData = getUsers();
+const usernames = userData.map(user => `${user.username} - ${user.role}`).join("<br>");
+document.getElementById("data").innerHTML = usernames;
+
+
