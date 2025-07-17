@@ -1,6 +1,6 @@
 const titleInput = document.getElementById('title');
 const contentInput = document.getElementById('my-text');
-const imageInput = document.getElementById('image'); // NEW!
+const imageInput = document.getElementById('image'); 
 const authorInput = document.getElementById('author');
 const btnSave = document.getElementById("btnSave");
 const authPost = document.getElementById("auth-list");
@@ -13,15 +13,6 @@ window.addEventListener('load', () => {
   showNotes();
 });
 
-  // //  Check for logged in user
-  // const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-  // if (loggedInUser) {
-  //   authorInput.value = loggedInUser.username;
-  //   authorInput.readOnly = true; // optional — lock field
-  // } else {
-  //   authorInput.value = '';
-  // }
-
 // Save post
 btnSave.addEventListener('click', (e) => {
   e.preventDefault();
@@ -29,8 +20,8 @@ btnSave.addEventListener('click', (e) => {
   const note = {
     id: Date.now(),
     title: titleInput.value || 'Untitled',
-    content: contentInput.value,
     image: imageInput.value,
+    content: contentInput.value,
     author: authorInput.value || 'Anonymous',
     createdAt: new Date().toISOString()
   };
@@ -42,7 +33,7 @@ btnSave.addEventListener('click', (e) => {
   titleInput.value = '';
   contentInput.value = '';
   imageInput.value = '';
-  authorInput.value = '';
+  // authorInput.value = '';
 
   showNotes();
 });
@@ -50,6 +41,7 @@ btnSave.addEventListener('click', (e) => {
 // Show posts
 function showNotes() {
   authPost.innerHTML = "";
+ const user = getLoggedInUser(); 
 
   posts.forEach(note => {
     const noteContainer = document.createElement('div');
@@ -74,6 +66,12 @@ function showNotes() {
     deleteBtn.innerText = 'Delete';
     editBtn.innerText = 'Edit';
 
+
+    if (!user || user.username !== note.author) {
+      deleteBtn.hidden = true;
+      editBtn.hidden=true;
+    }
+
     noteContainer.classList.add('note-container');
     actions.classList.add('actions');
 
@@ -82,14 +80,14 @@ function showNotes() {
 
     noteContainer.appendChild(title);
     noteContainer.appendChild(content);
-    if (note.image) noteContainer.appendChild(img); // only if present
+    if (note.image) noteContainer.appendChild(img); 
     noteContainer.appendChild(author);
     noteContainer.appendChild(actions);
 
     authPost.appendChild(noteContainer);
 
     deleteBtn.addEventListener('click', () => {
-      posts = posts.filter(n => n.id !== note.id);
+      posts = posts.filter(post=> post.id !== note.id);
       localStorage.setItem('posts', JSON.stringify(posts));
       showNotes();
     });
@@ -100,9 +98,27 @@ function showNotes() {
       imageInput.value = note.image; 
       authorInput.value = note.author;
 
-      posts = posts.filter(n => n.id !== note.id);
+      posts = posts.filter(post=> post.id !== note.id);
       localStorage.setItem('posts', JSON.stringify(posts));
       showNotes();
     });
   });
 }
+
+
+// get user logged in
+
+  function getLoggedInUser() {
+    const userdata = localStorage.getItem('userLoggedIn');
+    return userdata ? JSON.parse(userdata) : null; // Return single object, not array
+  }
+
+  // Set the author input value when the page loads
+  window.onload = function () {
+    const user = getLoggedInUser();
+    if (user && user.username) {
+      document.getElementById("author").value = user.username;
+    }
+  };
+
+  
