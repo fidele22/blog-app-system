@@ -1,4 +1,4 @@
-/* Apply a background and center the login box */
+
 body {
   margin: 0;
   padding: 0;
@@ -38,7 +38,7 @@ body {
   font-size: 14px;
 }
 
-/* Login button */
+
 #login button ,#register button {
   width: 100%;
   padding: 10px;

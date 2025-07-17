@@ -37,8 +37,14 @@ function registerUser() {
 
   users.push(newUser);
   saveUsers(users);
-
   alert('Registration successful!');
+
+  username.value ='';
+  password.value='';
+
+  window.location.href="login.html"
+  
+ 
 }
 
 // // Handle user login
@@ -61,20 +67,22 @@ function loginUser(){
     localStorage.setItem('userLoggedIn',JSON.stringify(checkUser));
 
     if(checkUser.role==='admin'){
-     window.location.href = 'adminDashboard.html';
+     window.location.href = './adminUser/adminDashboard.html';
     }
     else if(checkUser.role==='author'){
-     window.location.href = 'authorDashboard.html';
+     window.location.href = './authontication/auth.html';
     }
 
    
 
 }
 
-// fetching the data and render it to dom
+// fetching the data and render it to admin dashboard
 
 const userData = getUsers();
-const usernames = userData.map(user => `${user.username} - ${user.role}`).join("<br>");
+const usernames = userData.map(user => `Username: ${user.username} - Role: ${user.role}`).join("<br>");
 document.getElementById("data").innerHTML = usernames;
+
+//logout 
 
 
