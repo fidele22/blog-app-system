@@ -5,27 +5,31 @@
     <link rel ="stylesheet" href="auth.css">
   </head>
   <body>
-    <h1>Aunthonticate your content</h1>
-    <form id="authForm">
-  <label for="title">Title:</label><br/>
-  <input type="text" name="title" id="title" placeholder="Enter Your Title" required><br/>
+    <div class="container">
+        <h1 class="header">Aunthonticate your content</h1>
+        <form id="authForm">
+          <div class="sub-container">
+            <label for="title" class="sub-title">Title:</label><br/>
+            <input class="input-text" size="50" type="text" name="title" id="title" placeholder="Enter Your Title" required><br/>
 
-  <label for="content">Content:</label><br/>
-  <textarea id="my-text" cols="40" rows="15" placeholder="Write content here"></textarea><br/>
+            <label for="content" class="sub-title">Content:</label><br/>
+            <textarea id="my-text" cols="40" rows="15" placeholder="Write content here"></textarea><br/>
+            <div class="image-container">
+                <label for="image" class="sub-title">Image URL:</label><br/>
+                <input type="text" class="input-image" name="image" id="image" placeholder="https://..."><br/>
+            </div>
+            
 
-  <label for="image">Image URL:</label><br/>
-  <input type="text" name="image" id="image" placeholder="https://..."><br/>
+            <label for="author" class="sub-title">Author:</label><br/>
+            <input type="text" class="input-text" name="auth" id="author" placeholder="Your name"><br/>
 
-  <label for="author">Author:</label><br/>
-  <input type="text" name="auth" id="author" placeholder="Your name"><br/>
+          </div>         
+          <button type="submit" class="btn" name="submit" id="btnSave"><h3>Save</h3></button>
 
-  <button type="submit" name="submit" id="btnSave">Save</button>
-
-  <div id="auth-list"></div>
-</form>
-
-  
-
+          <div class="list" id="auth-list"></div>
+      </form>
+    </div>
+    
     <script src="auth.js"></script>
-  </body>
+</body>
 </html>

@@ -61,6 +61,46 @@ function showNotes() {
     const editBtn = document.createElement('button');
     const actions = document.createElement('div');
 
+    noteContainer.style.cssText=`
+    border:1px solid red;
+    width:10rem;
+    height:10.5rem;
+    overflow:hidden;
+    border-radius:12px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    color: hsl(0, 0%, 100%);
+    padding:8px;
+    background-color:black;
+    gap:5px;
+
+    `;
+    deleteBtn.style.cssText=`
+    width:4rem;
+    height:1.5rem;
+    border-radius:8px;
+    border:none;
+    font-weight:bold;
+    background-color:hsl(221, 78%, 44%);
+    color:hsl(0, 0%, 100%);
+    `;
+    editBtn.style.cssText=`
+    width:4rem;
+    height:1.5rem;
+    border-radius:8px;
+    border:none;
+    font-weight:bold;
+    background-color:hsl(221, 78%, 44%);
+    color:hsl(0, 0%, 100%);
+    `;
+
+  actions.style.cssText=`
+    display:flex;
+    gap:8px;
+  `;
+
+
     title.innerText = note.title;
     content.innerText = note.content;
     author.innerText = `By: ${note.author}`;
