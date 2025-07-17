@@ -1,0 +1,35 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #f9f9f9;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+form, div {
+  background: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px #ccc;
+  width: 100%;
+  max-width: 400px;
+}
+
+input, select, button {
+  display: block;
+  width: 100%;
+  padding: 0.7rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background: #0056b3;
+}
